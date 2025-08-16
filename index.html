@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Globe - Погода</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="search-container">
+                <input type="text" id="city-input" placeholder="Введите город...">
+                <button id="search-btn"><i class="fas fa-search"></i> <span class="search-text">Поиск</span></button>
+            </div>
+            <div class="units-toggle">
+                <button class="active" id="metric-btn">°C, м/с</button>
+                <button id="imperial-btn">°F, миль/ч</button>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="location-info">
+                <div id="current-date"></div>
+                <h1 id="city-name">Москва, RU</h1>
+            </div>
+
+            <div class="current-weather">
+                <div class="main-temp">
+                    <span id="current-temp">--</span>
+                    <span class="temp-unit">°C</span>
+                </div>
+                <div class="weather-description">
+                    <p id="weather-description">Загрузка данных...</p>
+                    <div class="weather-details">
+                        <p><i class="fas fa-wind"></i> <span id="wind-speed">--</span> <span class="wind-unit">м/с</span></p>
+                        <p><i class="fas fa-tachometer-alt"></i> <span id="pressure">--</span> гПа</p>
+                        <p><i class="fas fa-tint"></i> Влажность: <span id="humidity">--</span>%</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hourly-forecast">
+                <h2>Почасовой прогноз</h2>
+                <div class="chart-container">
+                    <canvas id="hourly-chart"></canvas>
+                </div>
+            </div>
+
+            <div class="forecast-container">
+                <h2>Прогноз на 7 дней</h2>
+                <div class="forecast" id="forecast">
+                    <!-- Прогноз будет добавлен через JavaScript -->
+                </div>
+            </div>
+
+            <div class="detailed-day" id="detailed-day" style="display: none;">
+                <h2 id="detailed-day-title">День</h2>
+                <div class="detailed-weather">
+                    <p id="detailed-description">Загрузка...</p>
+                    <p>Максимум: <span id="detailed-high">--</span><span class="temp-unit">°C</span>, минимум: <span id="detailed-low">--</span><span class="temp-unit">°C</span></p>
+                    
+                    <div class="detailed-stats">
+                        <div class="stat">
+                            <i class="fas fa-wind"></i>
+                            <span id="detailed-wind">--</span> <span class="wind-unit">м/с</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span id="detailed-pressure">--</span> гПа
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-tint"></i>
+                            <span id="detailed-humidity">--</span>%
+                        </div>
+                    </div>
+                    
+                    <div class="day-parts">
+                        <table>
+                            <tr>
+                                <th></th>
+                                <th>Утро</th>
+                                <th>День</th>
+                                <th>Вечер</th>
+                                <th>Ночь</th>
+                            </tr>
+                            <tr>
+                                <td>Температура</td>
+                                <td><span id="morning-temp">--</span><span class="temp-unit">°C</span></td>
+                                <td><span id="day-temp">--</span><span class="temp-unit">°C</span></td>
+                                <td><span id="evening-temp">--</span><span class="temp-unit">°C</span></td>
+                                <td><span id="night-temp">--</span><span class="temp-unit">°C</span></td>
+                            </tr>
+                            <tr>
+                                <td>Ощущается</td>
+                                <td><span id="morning-feels">--</span><span class="temp-unit">°C</span></td>
+                                <td><span id="day-feels">--</span><span class="temp-unit">°C</span></td>
+                                <td><span id="evening-feels">--</span><span class="temp-unit">°C</span></td>
+                                <td><span id="night-feels">--</span><span class="temp-unit">°C</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <button id="back-to-forecast" class="back-btn">Назад к прогнозу</button>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>© 2025 WeatherGlobe. Все права защищены.</p>
+            <p>Данные предоставлены OpenWeatherMap</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
